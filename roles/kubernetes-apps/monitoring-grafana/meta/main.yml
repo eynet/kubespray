@@ -1,0 +1,5 @@
+---
+dependencies:
+  - role: kubernetes-apps/monitoring-grafana/grafana
+  - role: kubernetes-apps/monitoring-grafana/heapster
+  - role: kubernetes-apps/monitoring-grafana/influxdb

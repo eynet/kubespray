@@ -1,0 +1,12 @@
+---
+
+- name: "write grafana deployment"
+  template:
+    src: grafana-deployment.yml.j2
+    dest: "{{ kube_config_dir }}/grafana-deployment.yaml"
+  register: grafana_deployment_manifest
+
+- name: "grafana-deployment | Create grafana deployment"
+  command: "{{ bin_dir }}/kubectl apply -f {{ kube_config_dir }}/grafana-deployment.yaml -n {{ system_namespace }}"
+  run_once: true
+  when: grafana_deployment_manifest.changed

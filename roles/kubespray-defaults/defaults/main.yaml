@@ -139,6 +139,8 @@ kubectl_localhost: false
 k8s_image_pull_policy: IfNotPresent
 
 # Addons which can be enabled
+weavescope_enabled: true
+monitoring_grafana_enabled: true
 efk_enabled: false
 helm_enabled: false
 istio_enabled: false

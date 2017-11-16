@@ -1,0 +1,12 @@
+---
+
+- name: "write influx deployment"
+  template:
+    src: influx-deployment.yml.j2
+    dest: "{{ kube_config_dir }}/influx-deployment.yaml"
+  register: influx_deployment_manifest
+
+- name: "influx-deployment | Create influx deployment"
+  command: "{{ bin_dir }}/kubectl apply -f {{ kube_config_dir }}/influx-deployment.yaml -n {{ system_namespace }}"
+  run_once: true
+  when: influx_deployment_manifest.changed

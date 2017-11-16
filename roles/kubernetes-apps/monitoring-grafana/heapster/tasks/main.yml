@@ -1,0 +1,23 @@
+---
+
+- name: "write heapster deployment"
+  template:
+    src: heapster-deployment.yml.j2
+    dest: "{{ kube_config_dir }}/heapster-deployment.yaml"
+  register: heapster_deployment_manifest
+
+- name: "heapster-deployment | Create heapster deployment"
+  command: "{{ bin_dir }}/kubectl apply -f {{ kube_config_dir }}/heapster-deployment.yaml -n {{ system_namespace }}"
+  run_once: true
+  when: heapster_deployment_manifest.changed
+
+- name: "write heapster rbac deployment"
+  template:
+    src: heapster-rbac.yml.j2
+    dest: "{{ kube_config_dir }}/heapster-rbac.yaml"
+  register: heapster_rbac_manifest
+
+- name: "heapster-rbac | Create heapster deployment"
+  command: "{{ bin_dir }}/kubectl apply -f {{ kube_config_dir }}/heapster-rbac.yaml -n {{ system_namespace }}"
+  run_once: true
+  when: heapster_rbac_manifest.changed

@@ -1,0 +1,12 @@
+---
+
+- name: "write weave scope deployment"
+  template:
+    src: weave-scope-deployment.yml.j2
+    dest: "{{ kube_config_dir }}/weave_scope.yaml"
+  register: weave_scope_manifest
+
+- name: "weave-scope | Create weave-scope deployment"
+  command: "{{ bin_dir }}/kubectl apply -f {{ kube_config_dir }}/weave_scope.yaml -n {{ system_namespace }}"
+  run_once: true
+  when: weave_scope_manifest.changed

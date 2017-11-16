@@ -14,6 +14,18 @@ dependencies:
     tags:
       - apps
       - efk
+      
+  - role: kubernetes-apps/weave-scope
+    when: weavescope_enabled
+    tags:
+      - apps
+      - weave-scope
+
+  - role: kubernetes-apps/monitoring-grafana
+    when: monitoring_grafana_enabled
+    tags:
+      - apps
+      - monitoring-grafana
 
   - role: kubernetes-apps/helm
     when: helm_enabled

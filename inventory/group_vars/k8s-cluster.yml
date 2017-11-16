@@ -67,7 +67,7 @@ kube_users:
 
 # Choose network plugin (calico, weave or flannel)
 # Can also be set to 'cloud', which lets the cloud provider setup appropriate routing
-kube_network_plugin: calico
+kube_network_plugin: weave
 
 # weave's network password for encryption
 # if null then no network encryption
@@ -178,3 +178,9 @@ local_volumes_enabled: false
 ## Supplementary addresses that can be added in kubernetes ssl keys.
 ## That can be usefull for example to setup a keepalived virtual IP
 # supplementary_addresses_in_ssl_keys: [10.0.0.1, 10.0.0.2, 10.0.0.3]
+
+## weave-scope
+weavescope_enabled: true
+
+# Monitoring suing influxdb, grafana, and heapster
+monitoring_grafana_enabled: true
